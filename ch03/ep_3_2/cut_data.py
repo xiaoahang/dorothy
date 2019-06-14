@@ -26,11 +26,15 @@ def merge_two_list(a, b):
 if __name__ == "__main__":
     fp = open("text.txt", "r", encoding="utf8")
     fout = open("result_cut.txt", "w", encoding="utf8")
-    regex1 = u'(?:[^\u4e00-\u9fa5（）*&……%￥$，,。.@! ！]){1,5}期'
-    regex2 = r'(?:[0-9]{1,3}[.]?[0-9]{1,3})%'
+
+    regex1 = u'(?:[^\u4e00-\u9fa5（）*&……%￥$，,。.@! ！]){1,5}期'  # 匹配 期 前面的特殊字符
+    regex2 = r'(?:[0-9]{1,3}[.]?[0-9]{1,3})%'  # 小数点前3位，小数点后面3位
+
     p1 = re.compile(regex1)
     p2 = re.compile(regex2)
+
     for line in fp.readlines():
+        # 先正则匹配 替换为flag， 后分词 ， 然后merge
         result1 = p1.findall(line)
         if result1:
             regex_re1 = result1
@@ -38,9 +42,11 @@ if __name__ == "__main__":
         result2 = p2.findall(line)
         if result2:
             line = p2.sub("FLAG2", line)
+
         words = jieba.cut(line)
         words1 = cut_hanlp(line)
         result = " ".join(words)
+
         if "FLAG1" in result:
             result = result.split("FLAG1")
             result = merge_two_list(result, result1)
@@ -49,6 +55,8 @@ if __name__ == "__main__":
             result = result.split("FLAG2")
             result = merge_two_list(result, result2)
             result = "".join(result)
-            # print(result)
+            print(result)
+
         fout.write(result)
+
     fout.close()
