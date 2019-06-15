@@ -2,17 +2,10 @@
 import os, gc, re, sys
 
 from jpype import *
+from path_dic import djclass_path
 
 # from pyhanlp import *
 
-#
-# root_path = "D:\\change\\chunking\\module\\hanlp"
-# djclass_path = "-Djava.class.path=" + root_path + os.sep + "hanlp-1.6.2.jar;" + root_path
-# startJVM(getDefaultJVMPath(), djclass_path, "-Xms1g", "-Xmx1g")
-
-root_path = '/Users/weihangzhang/code/dl-nlp/hanlp/'
-jar_name = 'hanlp-1.7.3.jar'
-djclass_path = "-Djava.class.path=" + root_path + os.sep + jar_name + ":" + root_path
 startJVM(getDefaultJVMPath(), djclass_path, "-Xms1g", "-Xmx1g")
 
 Tokenizer = JClass('com.hankcs.hanlp.tokenizer.StandardTokenizer')
