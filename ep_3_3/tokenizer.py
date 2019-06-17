@@ -1,10 +1,15 @@
 # encoding=utf8
-import os, gc, re, sys
 
 from jpype import *
-from path_dic import djclass_path
 
 # from pyhanlp import *
+
+#
+# root_path = "D:\\change\\chunking\\module\\hanlp"
+# djclass_path = "-Djava.class.path=" + root_path + os.sep + "hanlp-1.6.2.jar;" + root_path
+# startJVM(getDefaultJVMPath(), djclass_path, "-Xms1g", "-Xmx1g")
+
+from path_dic import djclass_path
 
 startJVM(getDefaultJVMPath(), djclass_path, "-Xms1g", "-Xmx1g")
 

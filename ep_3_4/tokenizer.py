@@ -1,5 +1,5 @@
 # encoding=utf8
-import os, gc, re, sys
+import re
 
 from jpype import *
 from path_dic import djclass_path
